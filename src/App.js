@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { useReducer, useMemo } from 'react';
 import InputHook from './hooks/InputHook';
 import BookReducer from './reducers/postReducer';
 import Counter from './Counter';
@@ -20,6 +20,13 @@ function App() {
     dispatch({ type: 'DELETE_POST', id: id });
   };
 
+  const myWord = (word) => {
+    console.log('function runs');
+    word.split().reverse().join('');
+  };
+
+  const word = useMemo(() => myWord('LevelUp Tuts'), []);
+
   return (
     <div className='App'>
       <form onSubmit={addPost}>
@@ -39,6 +46,8 @@ function App() {
       </ul>
       <hr />
       <Counter />
+      <hr />
+      {word}
     </div>
   );
 }
